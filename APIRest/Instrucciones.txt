@@ -1,0 +1,20 @@
+Como arrancar mongo:
+
+sudo service mongod status  para comprobar
+mongod para arrancarpor terminal 
+npm start en la ruta del server.js (github repo)
+
+
+TODOs:
+
+- Securizar con basic auth
+- Documentar con swagger
+- Desplegar API
+- Añadir HTTPS
+- Meter como servicio
+
+
+
+
+corregir lastest en package.lock
+

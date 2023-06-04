@@ -1,0 +1,19 @@
+{
+    "name": "api",
+    "version": "0.0.1",
+    "description": "Ejemplo de API Rest",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "connect": "^3.7.0",
+        "express": "latest",
+        "mongoose": "latest"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
+}
