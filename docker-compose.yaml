@@ -3,13 +3,12 @@ version: "3.8"
 services:
 
   mongodb:
-    container_name: saliclor-db
     image: mongo:6.0.2
-    restart: always    
+    restart: always
     environment:
-      - MONGO_INITDB_DATABASE=datosSaliclor
-      - MONGO_INITDB_ROOT_USERNAME=root      
-      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=saliclor-db
+      - MONGO_INITDB_ROOT_USERNAME=username
+      - MONGO_INITDB_ROOT_PASSWORD=password
     ports:
       - 27017:27017
       - 28017:28017
@@ -19,7 +18,6 @@ services:
       - local
 
   api:
-    container_name: saliclor-api
     depends_on:
       - mongodb
     build: ./api
@@ -28,10 +26,10 @@ services:
       - 3001:3001
     environment:
       - DB_HOST=mongodb
-      - DB_USER=admin
-      - DB_PASSWORD=1234
-      - DB_NAME=datosSaliclor
       - DB_PORT=27017
+      - DB_NAME=saliclor-db
+      - DB_USER=username
+      - DB_PASSWORD=password
     stdin_open: true
     tty: true
     networks:
