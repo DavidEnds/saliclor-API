@@ -1,24 +1,26 @@
 version: "3.8"
 
 services:
+
   mongodb:
     image: mongo:6.0.2
-    restart: unless-stopped
-    command: [--auth]
+    restart: always    
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
       - MONGO_INITDB_DATABASE=datosSaliclor
+      - MONGO_INITDB_ROOT_USERNAME=root      
+      - MONGO_INITDB_ROOT_PASSWORD=example
     ports:
       - 27017:27017
+      - 28017:28017
     volumes:
-      - db:/data/db
-      - ./mongod.conf:/etc/mongod.conf
-    entrypoint: ["mongod","--config","/etc/mongod.conf"]
+      - ./deploy/.data:/data/db
+    networks:
+      - local
+
   api:
     depends_on:
       - mongodb
-    build: ./
+    build: ./APIRest
     restart: unless-stopped
     ports:
       - 3001:3001
@@ -30,6 +32,8 @@ services:
       - DB_PORT=27017
     stdin_open: true
     tty: true
+    networks:
+      - local
 
-volumes:
-  db:
+networks:
+  local:
