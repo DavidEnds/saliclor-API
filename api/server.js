@@ -124,10 +124,12 @@ app.delete('/api/product/:productId', (req, res) =>{
 })
 */
 
+const queryParams = "authSource=admin&readPreference=primary&appname=api&directConnection=true&ssl=false";
+const sConn = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?${queryParams}`;
 
-console.log(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
+console.log(sConn)
 
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, (err, res) => {
+mongoose.connect(sConn, (err, res) => {
     if (err) { 
         console.log(err);
     }
