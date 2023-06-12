@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   mongodb:
-    container_name: salicor-db
+    container_name: saliclor-db
     image: mongo:6.0.2
     restart: always    
     environment:
@@ -19,7 +19,7 @@ services:
       - local
 
   api:
-    container_name: salicor-api
+    container_name: saliclor-api
     depends_on:
       - mongodb
     build: ./api
