@@ -3,6 +3,7 @@ version: "3.8"
 services:
 
   mongodb:
+    container_name: salicor-db
     image: mongo:6.0.2
     restart: always    
     environment:
@@ -18,9 +19,10 @@ services:
       - local
 
   api:
+    container_name: salicor-api
     depends_on:
       - mongodb
-    build: ./APIRest
+    build: ./api
     restart: unless-stopped
     ports:
       - 3001:3001
